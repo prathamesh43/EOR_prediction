@@ -1,0 +1,40 @@
+import pandas as pd
+
+fname = "s3"
+df = pd.read_csv(fname + "_f.csv")
+
+rm = df.iloc[380:692, :]
+lst = ["rm" for x in range(0,rm.shape[0])]
+rm["res"] = lst
+
+lm = df.iloc[883:1078, :]
+lst = ["lm" for x in range(0,lm.shape[0])]
+lm["res"] = lst
+
+cm = df.iloc[1186:1550, :]
+lst = ["cm" for x in range(0,cm.shape[0])]
+cm["res"] = lst
+
+med = df.iloc[1738:2064, :]
+lst = ["med" for x in range(0,med.shape[0])]
+med["res"] = lst
+
+sf = df.iloc[10:346, :]
+sf1 = df.iloc[1578:1690, :]
+#sf2 = df.iloc[961:1103, :]
+frames = [sf, sf1]
+front = pd.concat(frames)
+lst = ["sf" for x in range(0,front.shape[0])]
+front["res"] = lst
+
+rand = df.iloc[2150:2700, :]
+lst = ["rand" for x in range(0,rand.shape[0])]
+rand["res"] = lst
+
+
+rm.to_csv("rm/" + fname +'_rm.csv', header=True, index=False)
+lm.to_csv("lm/" + fname +'_lm.csv', header=True, index=False)
+cm.to_csv("cm/" + fname +'_cm.csv', header=True, index=False)
+front.to_csv("sf/" + fname +'_sf.csv', header=True, index=False)
+med.to_csv("med/" + fname +'_med.csv', header=True, index=False)
+rand.to_csv("rand/" + fname +'_rand.csv', header=True, index=False)
